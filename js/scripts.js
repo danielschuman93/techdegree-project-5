@@ -15,14 +15,14 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
 //function to generate HTML
 function generateCards(employeeList) {
   for (i=0; i<employeeList.length; i++) {
-    let card = `<div class="card">
-                    <div class="card-img-container">
-                        <img class="card-img" src="${employeeList[i].picture.large}" alt="profile picture">
+    let card = `<div title="${i}" class="card">
+                    <div title="${i}" class="card-img-container">
+                        <img title="${i}" class="card-img" src="${employeeList[i].picture.large}" alt="profile picture">
                     </div>
-                    <div class="card-info-container">
-                        <h3 id="name" class="card-name cap">${employeeList[i].name.first} ${employeeList[i].name.last}</h3>
-                        <p class="card-text">${employeeList[i].email}</p>
-                        <p class="card-text cap">${employeeList[i].location.city}, ${employeeList[i].location.state}</p>
+                    <div title="${i}" class="card-info-container">
+                        <h3 title="${i}" id="name" class="card-name cap">${employeeList[i].name.first} ${employeeList[i].name.last}</h3>
+                        <p title="${i}" class="card-text">${employeeList[i].email}</p>
+                        <p title="${i}" class="card-text cap">${employeeList[i].location.city}, ${employeeList[i].location.state}</p>
                     </div>
                 </div>`
    galleryDiv.innerHTML += card;  
@@ -55,9 +55,7 @@ function createModal(data) {
   //event handler to close modal window
   const closeBtn = document.getElementById('modal-close-btn');
   closeBtn.addEventListener('click', () => {
-    if (window.style.display === 'block'){
-      window.style.display = 'none';
-    }
+    window.remove()
   });
 }
 
@@ -65,6 +63,6 @@ function createModal(data) {
 //event listener to display modal window
 galleryDiv.addEventListener('click', (e) => {
   if (e.target.className.includes('card')) {
-    createModal(peopleArray[0]);
+    createModal(peopleArray[e.target.title]);
   }
-  });
+ });
