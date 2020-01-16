@@ -47,16 +47,43 @@ function createModal(data) {
                         <p class="modal-text">${data.location.street.number} ${data.location.street.name}, ${data.location.city}, ${data.location.state} ${data.location.postcode}</p>
                         <p class="modal-text">Birthday: ${data.dob.date.slice(5,7)}/${data.dob.date.slice(8,10)}/${data.dob.date.slice(0,4)}</p>
                     </div>
-                </div>`
-  ;
+                </div>
+                <div class="modal-btn-container">
+                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                    <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                </div>`;
+  
   body.appendChild(window);
   window.style.display = 'block';
+  
   
   //event handler to close modal window
   const closeBtn = document.getElementById('modal-close-btn');
   closeBtn.addEventListener('click', () => {
     window.remove()
   });
+
+  //event handler for `prev` and `next` buttons
+  const prevBtn = document.getElementById('modal-prev');
+  const nextBtn = document.getElementById('modal-next');
+  let peopleArrayIndex = peopleArray.indexOf(data);
+
+  if(data === peopleArray[0]){
+    prevBtn.style.display = 'none';
+  }
+  if(data === peopleArray[11]){
+    nextBtn.style.display = 'none';
+  }
+
+  prevBtn.addEventListener('click', () => {
+    window.remove();
+    createModal(peopleArray[(peopleArrayIndex - 1)]);
+  })
+  
+  nextBtn.addEventListener('click', () => {
+    window.remove();
+    createModal(peopleArray[(peopleArrayIndex + 1)]);
+  })
 }
 
 
@@ -85,4 +112,4 @@ searchBar.addEventListener('keyup', () => {
       document.querySelector(`[title="${i}"]`).style.display = 'none';
     }
   }                           
-})
+});
