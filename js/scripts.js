@@ -66,3 +66,23 @@ galleryDiv.addEventListener('click', (e) => {
     createModal(peopleArray[e.target.title]);
   }
  });
+
+
+//create search bar
+const searchContainer = document.querySelector('div.search-container');
+let searchBarHTML = `<form action="#" method="get">
+                            <input type="search" id="search-input" class="search-input" placeholder="Search...">
+                            <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+                        </form>`;
+searchContainer.innerHTML = searchBarHTML;
+const searchInput = document.getElementById('search-input');
+const searchBar = document.querySelector('form');
+searchBar.addEventListener('keyup', () => {
+  for(i=0; i<peopleArray.length; i++){
+    if(peopleArray[i].name.first.toLowerCase().includes(searchInput.value.toLowerCase()) || peopleArray[i].name.last.toLowerCase().includes(searchInput.value.toLowerCase())){
+      document.querySelector(`[title="${i}"]`).style.display = 'block';
+    } else {
+      document.querySelector(`[title="${i}"]`).style.display = 'none';
+    }
+  }                           
+})
