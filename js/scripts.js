@@ -54,7 +54,7 @@ function createModal(data) {
                 </div>`;
   
   body.appendChild(window);
-  window.style.display = 'block';
+  window.style.display = '';
   
   
   //event handler to close modal window
@@ -107,7 +107,7 @@ const searchBar = document.querySelector('form');
 searchBar.addEventListener('keyup', () => {
   for(i=0; i<peopleArray.length; i++){
     if(peopleArray[i].name.first.toLowerCase().includes(searchInput.value.toLowerCase()) || peopleArray[i].name.last.toLowerCase().includes(searchInput.value.toLowerCase())){
-      document.querySelector(`[title="${i}"]`).style.display = 'block';
+      document.querySelector(`[title="${i}"]`).style.display = '';
     } else {
       document.querySelector(`[title="${i}"]`).style.display = 'none';
     }
