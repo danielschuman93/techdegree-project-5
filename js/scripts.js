@@ -113,3 +113,9 @@ searchBar.addEventListener('keyup', () => {
     }
   }                           
 });
+
+
+//prevent search bar from submitting
+searchBar.addEventListener('submit', (e) => {
+  e.preventDefault();
+});
