@@ -63,6 +63,7 @@ function createModal(data) {
     window.remove()
   });
 
+
   //event handler for `prev` and `next` buttons
   const prevBtn = document.getElementById('modal-prev');
   const nextBtn = document.getElementById('modal-next');
@@ -104,14 +105,26 @@ let searchBarHTML = `<form action="#" method="get">
 searchContainer.innerHTML = searchBarHTML;
 const searchInput = document.getElementById('search-input');
 const searchBar = document.querySelector('form');
+const noUser = document.createElement('h2');
+noUser.innerHTML = 'No user found.'
+body.appendChild(noUser);
+noUser.style.display = 'none';
 searchBar.addEventListener('keyup', () => {
+  let displayedCards = 0;
   for(i=0; i<peopleArray.length; i++){
     if(peopleArray[i].name.first.toLowerCase().includes(searchInput.value.toLowerCase()) || peopleArray[i].name.last.toLowerCase().includes(searchInput.value.toLowerCase())){
       document.querySelector(`[title="${i}"]`).style.display = '';
+      displayedCards += 1;
     } else {
       document.querySelector(`[title="${i}"]`).style.display = 'none';
     }
-  }                           
+  }
+
+  if(displayedCards < 1){
+    noUser.style.display = 'block';
+  } else {
+    noUser.style.display = 'none';
+  }
 });
 
 
